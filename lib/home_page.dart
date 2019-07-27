@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage>{
   }
 
   Widget _showTodoList(){
-    return Center(child: Text("Welcome. Your list is empty",
+    return Center(child: Text("Hi. Your list is empty",
       textAlign: TextAlign.center,
       style: TextStyle(fontSize: 30.0),));
     }
