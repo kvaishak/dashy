@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.11.1
   auto_size_text:
+  firebase_database:
 
 dev_dependencies:
   flutter_test:

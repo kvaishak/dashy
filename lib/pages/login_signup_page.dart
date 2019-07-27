@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_login_demo/services/authentication.dart';
 
 class LoginSignUpPage extends StatefulWidget {
@@ -17,7 +17,7 @@ enum FormMode { LOGIN, SIGNUP }
 
 class _LoginSignUpPageState extends State<LoginSignUpPage>{
   final _formKey = new GlobalKey<FormState>();
-//  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   String _email;
   String _password;
@@ -52,7 +52,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
       try {
         if (_formMode == FormMode.LOGIN) {
           userId = await widget.auth.signIn(_email, _password);
-          print('Signed in: $userId');
+//          print('Signed in: $userId');
         } else {
           userId = await widget.auth.signUp( _email, _password);
           print('Signed up user: $userId');
