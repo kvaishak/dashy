@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Verify your account"),
-          content: new Text("Please verify account in the link sent to email"),
+          content: new Text("Please verify your account in the link sent to email"),
           actions: <Widget>[
             new FlatButton(
               child: new Text("Resent link"),
