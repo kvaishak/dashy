@@ -238,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                     icon: (completed)
                         ? Icon(
                       Icons.done_outline,
-                      color: Colors.green,
+                      color: Colors.blue,
                       size: 20.0,
                     )
                         : Icon(Icons.done, color: Colors.grey, size: 20.0),
