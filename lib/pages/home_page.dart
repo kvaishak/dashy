@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   final _textEditingController = TextEditingController();
   StreamSubscription<Event> _onTodoAddedSubscription;
   StreamSubscription<Event> _onTodoChangedSubscription;
+  StreamSubscription<Event> _onTodoRemovedSubscription;
 
   Query _todoQuery;
 
@@ -37,15 +38,15 @@ class _HomePageState extends State<HomePage> {
     _checkEmailVerification();
 
     _todoList = new List();
-    print("TODO data is being checked");
     _todoQuery = _database
         .reference()
         .child("todo")
         .orderByChild("userId")
         .equalTo(widget.userId);
-    print(_todoQuery);
+
     _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(_onEntryAdded);
     _onTodoChangedSubscription = _todoQuery.onChildChanged.listen(_onEntryChanged);
+    _onTodoRemovedSubscription = _todoQuery.onChildRemoved.listen(_onEntryRemoved);
   }
 
   void _checkEmailVerification() async {
@@ -113,7 +114,20 @@ class _HomePageState extends State<HomePage> {
   void dispose() {
     _onTodoAddedSubscription.cancel();
     _onTodoChangedSubscription.cancel();
+    _onTodoRemovedSubscription.cancel();
     super.dispose();
+  }
+  _onEntryRemoved(Event event){
+    var deleted = Todo.fromSnapshot(event.snapshot);
+    print(deleted.subject + " removed");
+
+    var oldEntry = _todoList.singleWhere((entry) {
+      return entry.key == event.snapshot.key;
+    });
+
+    setState(() {
+      _todoList.removeAt(_todoList.indexOf(oldEntry));
+    });
   }
 
   _onEntryChanged(Event event) {
@@ -160,9 +174,7 @@ class _HomePageState extends State<HomePage> {
   _deleteTodo(String todoId, int index) {
     _database.reference().child("todo").child(todoId).remove().then((_) {
       print("Delete $todoId successful");
-      setState(() {
-        _todoList.removeAt(index);
-      });
+      //removing the element in out local data will be handled by the removeEvent.
     });
   }
 

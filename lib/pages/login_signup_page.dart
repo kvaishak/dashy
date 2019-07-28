@@ -52,7 +52,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
       try {
         if (_formMode == FormMode.LOGIN) {
           userId = await widget.auth.signIn(_email, _password);
-//          print('Signed in: $userId');
+          print('Signed in: $userId');
         } else {
           userId = await widget.auth.signUp( _email, _password);
           print('Signed up user: $userId');
@@ -86,7 +86,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
     _isIos = Theme.of(context).platform == TargetPlatform.iOS;
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Flutter login demo'),
+          title: new Text('Login/Sign-Up'),
         ),
         body: Stack(
           children: <Widget>[
