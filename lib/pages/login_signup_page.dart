@@ -135,7 +135,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
       return Center(
         child:  SizedBox(
           child: CircularProgressIndicator(
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.transparent,
             strokeWidth: 5,
           ),
           height: 200.0,
