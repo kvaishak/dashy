@@ -40,7 +40,7 @@ class _MainPage extends State<MainPage>{
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home),  title: Text('Home'), backgroundColor: Colors.greenAccent),
-          BottomNavigationBarItem(icon: Icon(Icons.assignment), title: Text('Goals')),
+          BottomNavigationBarItem(icon: Icon(Icons.assignment), title: Text('To-Do')),
           BottomNavigationBarItem(icon: Icon(Icons.do_not_disturb), title: Text('Log-Out')),
         ],
         currentIndex: _selectedIndex,
