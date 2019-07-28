@@ -17,10 +17,12 @@ enum FormMode { LOGIN, SIGNUP }
 
 class _LoginSignUpPageState extends State<LoginSignUpPage>{
   final _formKey = new GlobalKey<FormState>();
+  var passKey = GlobalKey<FormFieldState>();
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   String _email;
   String _password;
+  String _rpassword;
   String _errorMessage;
 
   // Initial form is login form
@@ -47,7 +49,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
       _isLoading = true;
     });
     if (_validateAndSave()) {
-//      FirebaseUser userId;
         String userId = "";
       try {
         if (_formMode == FormMode.LOGIN) {
@@ -57,7 +58,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
           userId = await widget.auth.signUp( _email, _password);
           print('Signed up user: $userId');
           print('Verification email sent');
-          widget.auth.sendEmailVerification();
+//          widget.auth.sendEmailVerification();
         }
         if (userId.length > 0 && userId != null) {
             widget.onSignedIn();
@@ -72,6 +73,11 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
             _errorMessage = e.message;
         });
       }
+    }else{
+      //to prevent the loading circle from showing in case of empty password.
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -87,9 +93,9 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
   Widget build(BuildContext context) {
     _isIos = Theme.of(context).platform == TargetPlatform.iOS;
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Login/Sign-Up Page'),
-        ),
+//        appBar: new AppBar(
+//          title: new Text('Login/Sign-Up Page'),
+//        ),
         body: Stack(
           children: <Widget>[
             _showBody(),
@@ -109,8 +115,9 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
               _showLogo(),
               _showEmailInput(),
               _showPasswordInput(),
+              _showRepeatPasswordInput(),
               _showPrimaryButton(),
-               _showSecondaryButton(),
+              _showSecondaryButton(),
               _showErrorMessage(),
             ],
           ),
@@ -121,7 +128,20 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
 
   Widget _showCircularProgress(){
     if (_isLoading) {
-      return Center(child: CircularProgressIndicator());
+      print("Loading");
+//      return Center(child: CircularProgressIndicator(
+//        valueColor: new AlwaysStoppedAnimation(Colors.lightBlueAccent),
+//      ));
+      return Center(
+        child:  SizedBox(
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.white,
+            strokeWidth: 5,
+          ),
+          height: 200.0,
+          width: 200.0,
+        ),
+      );
     } return Container(height: 0.0, width: 0.0,);
 
   }
@@ -163,6 +183,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
       child: new TextFormField(
+        key: passKey,
         maxLines: 1,
         obscureText: true,
         autofocus: false,
@@ -176,6 +197,41 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
         onSaved: (value) => _password = value,
       ),
     );
+  }
+
+  Widget _showRepeatPasswordInput() {
+    if(_formMode ==  FormMode.SIGNUP){
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+        child: new TextFormField(
+          maxLines: 1,
+          obscureText: true,
+          autofocus: false,
+          decoration: new InputDecoration(
+              hintText: 'Re-enter your Password',
+              icon: new Icon(
+                Icons.lock,
+                color: Colors.grey,
+              )),
+          validator: (value) {
+            var password = passKey.currentState.value;
+            if(value.isEmpty){
+              return 'Password can\'t be empty';
+            }else if(value.compareTo(password) != 0){
+              return 'Password Not the Same';
+            }else{
+              return null;
+            }
+          },
+          onSaved: (value) => _rpassword = value,
+        ),
+      );
+    }else{
+      return  new Container(
+        height: 0.0,
+      );
+    }
+
   }
 
   Widget _showPrimaryButton() {

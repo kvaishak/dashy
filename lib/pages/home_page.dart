@@ -146,14 +146,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  _signOut() async {
-    try {
-      await widget.auth.signOut();
-      widget.onSignedOut();
-    } catch (e) {
-      print(e);
-    }
-  }
+//  _signOut() async {
+//    try {
+//      await widget.auth.signOut();
+//      widget.onSignedOut();
+//    } catch (e) {
+//      print(e);
+//    }
+//  }
 
   _addNewTodo(String todoItem) {
     if (todoItem.length > 0) {
@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
             String todoId = _todoList[index].key;
             String subject = _todoList[index].subject;
             bool completed = _todoList[index].completed;
-            String userId = _todoList[index].userId;
+//            String userId = _todoList[index].userId;
             return Dismissible(
               key: Key(todoId),
               background: Container(color: Colors.red),
@@ -238,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                     icon: (completed)
                         ? Icon(
                       Icons.done_outline,
-                      color: Colors.green,
+                      color: Colors.blue,
                       size: 20.0,
                     )
                         : Icon(Icons.done, color: Colors.grey, size: 20.0),
@@ -258,15 +258,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Flutter login demo'),
-          actions: <Widget>[
-            new FlatButton(
-                child: new Text('Logout',
-                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-                onPressed: _signOut)
-          ],
-        ),
+//        appBar: new AppBar(
+//          title: new Text('Flutter login demo'),
+//          actions: <Widget>[
+//            new FlatButton(
+//                child: new Text('Logout',
+//                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+//                onPressed: _signOut)
+//          ],
+//        ),
         body: _showTodoList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
