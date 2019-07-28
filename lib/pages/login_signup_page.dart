@@ -56,6 +56,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
         } else {
           userId = await widget.auth.signUp( _email, _password);
           print('Signed up user: $userId');
+          print('Verification email sent');
+          widget.auth.sendEmailVerification();
         }
         if (userId.length > 0 && userId != null) {
             widget.onSignedIn();
