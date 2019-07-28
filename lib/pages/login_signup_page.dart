@@ -87,9 +87,9 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
   Widget build(BuildContext context) {
     _isIos = Theme.of(context).platform == TargetPlatform.iOS;
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Login/Sign-Up Page'),
-        ),
+//        appBar: new AppBar(
+//          title: new Text('Login/Sign-Up Page'),
+//        ),
         body: Stack(
           children: <Widget>[
             _showBody(),
