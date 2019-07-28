@@ -87,7 +87,7 @@ class DashBoard extends StatelessWidget{
       padding: const EdgeInsets.fromLTRB(0.0, 60, 0.0, 0.0),
       child: Center(
         child: Container(
-          child: Text(wish,  style: TextStyle(fontSize: 50, color: Colors.black), textAlign: TextAlign.justify),
+          child: Text(wish,  style: TextStyle(fontSize: 45, color: Colors.black), textAlign: TextAlign.justify),
         ),
       ),
     );
