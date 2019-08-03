@@ -33,6 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    //for maintaining an offline version of the data.
+    FirebaseDatabase.instance.setPersistenceEnabled(true);
     super.initState();
 
     _checkEmailVerification();
