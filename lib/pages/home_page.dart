@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     FirebaseDatabase.instance.setPersistenceEnabled(true);
     super.initState();
 
-    _checkEmailVerification();
+//    _checkEmailVerification();
 
     _todoList = new List();
     _todoQuery = _database
