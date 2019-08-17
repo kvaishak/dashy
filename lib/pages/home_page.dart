@@ -186,25 +186,26 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            title: new Text("Add New Todo."),
             content: new Row(
               children: <Widget>[
                 new Expanded(child: new TextField(
                   controller: _textEditingController,
                   autofocus: true,
                   decoration: new InputDecoration(
-                    labelText: 'Add new todo',
+                    labelText: 'todo',
                   ),
                 ))
               ],
             ),
             actions: <Widget>[
               new FlatButton(
-                  child: const Text('Cancel'),
+                  child: const Text('CANCEL'),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
               new FlatButton(
-                  child: const Text('Save'),
+                  child: const Text('SAVE'),
                   onPressed: () {
                     _addNewTodo(_textEditingController.text.toString());
                     Navigator.pop(context);
