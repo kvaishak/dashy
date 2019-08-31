@@ -218,8 +218,18 @@ class _HomePageState extends State<HomePage> {
 
   Widget _showTodoList() {
     if (_todoList.length > 0) {
-      return ListView.builder(
-          shrinkWrap: true,
+      return Column (
+        children : <Widget> [
+      Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+    child: Column(
+    children: <Widget>[
+      Text(
+      "Todo.",
+      style: TextStyle(fontSize: 45.0),
+      ),])),
+      ListView.builder(
+      shrinkWrap: true,
           itemCount: _todoList.length,
           itemBuilder: (BuildContext context, int index) {
             String todoId = _todoList[index].key;
@@ -250,7 +260,9 @@ class _HomePageState extends State<HomePage> {
                     }),
               ),
             );
-          });
+          })
+        ]
+      );
     } else {
       return Center(child: Text("Welcome. Your list is empty",
         textAlign: TextAlign.center,
