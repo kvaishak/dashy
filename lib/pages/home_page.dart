@@ -5,12 +5,13 @@ import 'package:flutter_login_demo/models/todo.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.auth, this.userId, this.onSignedOut})
+  HomePage({Key key, this.auth, this.userId, this.onSignedOut, this.todoList})
       : super(key: key);
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
   final String userId;
+  final List<Todo> todoList;
 
   @override
   State<StatefulWidget> createState() => new _HomePageState();
@@ -37,9 +38,9 @@ class _HomePageState extends State<HomePage> {
     FirebaseDatabase.instance.setPersistenceEnabled(true);
     super.initState();
 
-    _checkEmailVerification();
+//    _checkEmailVerification();
 
-    _todoList = new List();
+    _todoList = widget.todoList != null ? widget.todoList : new List();
     _todoQuery = _database
         .reference()
         .child("todo")
@@ -143,9 +144,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onEntryAdded(Event event) {
-    setState(() {
-      _todoList.add(Todo.fromSnapshot(event.snapshot));
-    });
+    var todoFromSnapShot = Todo.fromSnapshot(event.snapshot);
+    print(todoFromSnapShot.key);
+    bool isTodoPresent = false;
+
+    for(var i = 0; i < _todoList.length; i++){
+      if(_todoList[i].key == todoFromSnapShot.key){
+        isTodoPresent = true;
+        break;
+      }
+    }
+    if(!isTodoPresent){
+      setState(() {
+        _todoList.add(todoFromSnapShot);
+        print(event.snapshot.value);
+      });
+    }
   }
 
 //  _signOut() async {
@@ -186,25 +200,26 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            title: new Text("Add New Todo."),
             content: new Row(
               children: <Widget>[
                 new Expanded(child: new TextField(
                   controller: _textEditingController,
                   autofocus: true,
                   decoration: new InputDecoration(
-                    labelText: 'Add new todo',
+                    labelText: 'todo',
                   ),
                 ))
               ],
             ),
             actions: <Widget>[
               new FlatButton(
-                  child: const Text('Cancel'),
+                  child: const Text('CANCEL'),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
               new FlatButton(
-                  child: const Text('Save'),
+                  child: const Text('SAVE'),
                   onPressed: () {
                     _addNewTodo(_textEditingController.text.toString());
                     Navigator.pop(context);
@@ -217,8 +232,18 @@ class _HomePageState extends State<HomePage> {
 
   Widget _showTodoList() {
     if (_todoList.length > 0) {
-      return ListView.builder(
-          shrinkWrap: true,
+      return Column (
+        children : <Widget> [
+      Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+    child: Column(
+    children: <Widget>[
+      Text(
+      "Todo.",
+      style: TextStyle(fontSize: 45.0),
+      ),])),
+      ListView.builder(
+      shrinkWrap: true,
           itemCount: _todoList.length,
           itemBuilder: (BuildContext context, int index) {
             String todoId = _todoList[index].key;
@@ -249,7 +274,9 @@ class _HomePageState extends State<HomePage> {
                     }),
               ),
             );
-          });
+          })
+        ]
+      );
     } else {
       return Center(child: Text("Welcome. Your list is empty",
         textAlign: TextAlign.center,

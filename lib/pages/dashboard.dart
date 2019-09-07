@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget{
-
   var hour;
 
   Widget build(BuildContext context) {
