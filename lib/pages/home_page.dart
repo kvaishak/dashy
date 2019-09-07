@@ -5,12 +5,13 @@ import 'package:flutter_login_demo/models/todo.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.auth, this.userId, this.onSignedOut})
+  HomePage({Key key, this.auth, this.userId, this.onSignedOut, this.todoList})
       : super(key: key);
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
   final String userId;
+  final List<Todo> todoList;
 
   @override
   State<StatefulWidget> createState() => new _HomePageState();
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
 
 //    _checkEmailVerification();
 
-    _todoList = new List();
+    _todoList = widget.todoList != null ? widget.todoList : new List();
     _todoQuery = _database
         .reference()
         .child("todo")
@@ -143,9 +144,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onEntryAdded(Event event) {
-    setState(() {
-      _todoList.add(Todo.fromSnapshot(event.snapshot));
-    });
+    var todoFromSnapShot = Todo.fromSnapshot(event.snapshot);
+    print(todoFromSnapShot.key);
+    bool isTodoPresent = false;
+
+    for(var i = 0; i < _todoList.length; i++){
+      if(_todoList[i].key == todoFromSnapShot.key){
+        isTodoPresent = true;
+        break;
+      }
+    }
+    if(!isTodoPresent){
+      setState(() {
+        _todoList.add(todoFromSnapShot);
+        print(event.snapshot.value);
+      });
+    }
   }
 
 //  _signOut() async {
@@ -221,7 +235,7 @@ class _HomePageState extends State<HomePage> {
       return Column (
         children : <Widget> [
       Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
     child: Column(
     children: <Widget>[
       Text(

@@ -14,6 +14,12 @@ class Todo {
         subject = snapshot.value["subject"],
         completed = snapshot.value["completed"];
 
+  Todo.fromValue(String key, Map obj):
+      key = key,
+        userId = obj["userId"],
+        subject = obj["subject"],
+        completed = obj["completed"];
+
   toJson() {
     return {
       "userId": userId,

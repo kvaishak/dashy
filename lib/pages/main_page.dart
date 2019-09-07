@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login_demo/models/todo.dart';
 import 'package:flutter_login_demo/services/authentication.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'dart:async';
 import 'home_page.dart';
 import 'dashboard.dart';
 
 class MainPage extends StatefulWidget{
   MainPage({Key key, this.auth, this.userId, this.onSignedOut})
       : super(key: key);
+
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
@@ -17,6 +21,37 @@ class MainPage extends StatefulWidget{
 
 class _MainPage extends State<MainPage>{
   int _selectedIndex = 0;
+  Query _todoQuery;
+
+  List<Todo> _todoList;
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  StreamSubscription<Event> _onTodoUploadedSubscription;
+
+  @override
+  void initState(){
+    super.initState();
+    _todoList = new List();
+    _todoQuery = _database
+        .reference()
+        .child("todo")
+        .orderByChild("userId")
+        .equalTo(widget.userId);
+
+    _onTodoUploadedSubscription = _todoQuery.onValue.listen(_onTodoLoaded);
+  }
+
+  _onTodoLoaded(Event event){
+    print("Todo Loaded for the first time");
+    var value = event.snapshot.value;
+    _onTodoUploadedSubscription.cancel();
+
+    value.forEach((key,value){
+      print('${key}: ${value}');
+      _todoList.add(Todo.fromValue(key, value));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +64,7 @@ class _MainPage extends State<MainPage>{
         userId: widget.userId,
         auth: widget.auth,
         onSignedOut: widget.onSignedOut,
+        todoList: _todoList,
       );
     }else{
     print("Logging Out");
