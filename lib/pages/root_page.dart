@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_demo/pages/login_signup_page.dart';
-import 'package:flutter_login_demo/services/authentication.dart';
+import 'package:dashy/pages/login_signup_page.dart';
+import 'package:dashy/services/authentication.dart';
 import 'main_page.dart';
 
 class RootPage extends StatefulWidget {

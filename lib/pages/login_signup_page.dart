@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_login_demo/services/authentication.dart';
+import 'package:dashy/services/authentication.dart';
 
 class LoginSignUpPage extends StatefulWidget {
   LoginSignUpPage({this.auth, this.onSignedIn});
@@ -153,8 +153,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
         padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
         child: CircleAvatar(
           backgroundColor: Colors.transparent,
-          radius: 48.0,
-          child: Image.asset('assets/dashy-icon.png'),
+          radius: 80.0,
+          child: Image.asset('assets/dashy-login.png'),
         ),
       ),
     );

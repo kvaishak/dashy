@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_demo/models/todo.dart';
-import 'package:flutter_login_demo/services/authentication.dart';
+import 'package:dashy/models/todo.dart';
+import 'package:dashy/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
 import 'home_page.dart';
@@ -46,10 +46,11 @@ class _MainPage extends State<MainPage>{
     print("Todo Loaded for the first time");
     var value = event.snapshot.value;
     _onTodoUploadedSubscription.cancel();
+    print(value);
 
     value.forEach((key,value){
       print('${key}: ${value}');
-      _todoList.add(Todo.fromValue(key, value));
+//      _todoList.add(Todo.fromValue(key, value));
     });
   }
 

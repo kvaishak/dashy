@@ -1,4 +1,4 @@
-name: flutter_login_demo
+name: dashy
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -31,6 +31,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: "^0.7.3"
+
+flutter_icons:
+  image_path: "assets/dashy-icon.png"
+  image_path_android: "assets/dashy-login.png"
+  android: true
+  ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -44,7 +51,7 @@ flutter:
   uses-material-design: true
 
   assets:
-      - dashy-icon.png
+      - dashy-login.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

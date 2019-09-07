@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:198765944214:android:f7dd06c04f0d32bf",
         "android_client_info": {
-          "package_name": "wireshark.flutter_login_demo"
+          "package_name": "wireshark.dashy"
         }
       },
       "oauth_client": [
