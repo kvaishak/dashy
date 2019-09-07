@@ -1,4 +1,4 @@
-# flutter_login_demo
+# dashy
 
 A new Flutter application.
 
