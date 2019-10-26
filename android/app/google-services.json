@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "198765944214",
-    "firebase_url": "https://logindemo-81a40.firebaseio.com",
-    "project_id": "logindemo-81a40",
-    "storage_bucket": "logindemo-81a40.appspot.com"
+    "project_number": "689140744292",
+    "firebase_url": "https://dashy-800d6.firebaseio.com",
+    "project_id": "dashy-800d6",
+    "storage_bucket": "dashy-800d6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:198765944214:android:f7dd06c04f0d32bf",
+        "mobilesdk_app_id": "1:689140744292:android:6adcf0514b09b894ca5f71",
         "android_client_info": {
           "package_name": "wireshark.dashy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "198765944214-2jdgrqkrh7b0lb0pgk2ok5i64uj75nn2.apps.googleusercontent.com",
+          "client_id": "689140744292-es2rnr3nifm8l6esnrjlc3erdts66auj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "wireshark.dashy",
+            "certificate_hash": "3099ffd1759780416f5164786bdc8cd8ade72a2d"
+          }
+        },
+        {
+          "client_id": "689140744292-a7p66d2mi4r0qfodshv0fsuqfk2a7sha.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBXuUS85lltP4UJYYh4bnkfB3aZ9BQ5OUM"
+          "current_key": "AIzaSyAj4lu8EqF3aFzb4OvVnDZaHaFqToCcZ4E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "198765944214-2jdgrqkrh7b0lb0pgk2ok5i64uj75nn2.apps.googleusercontent.com",
+              "client_id": "689140744292-a7p66d2mi4r0qfodshv0fsuqfk2a7sha.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
