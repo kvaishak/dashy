@@ -1,4 +1,4 @@
-package wireshark.flutter_login_demo;
+package wireshark.dashy;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

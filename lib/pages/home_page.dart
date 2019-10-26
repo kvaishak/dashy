@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_demo/services/authentication.dart';
+import 'package:dashy/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_login_demo/models/todo.dart';
+import 'package:dashy/models/todo.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
@@ -232,53 +232,53 @@ class _HomePageState extends State<HomePage> {
 
   Widget _showTodoList() {
     if (_todoList.length > 0) {
-      return Column (
-        children : <Widget> [
-      Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
-    child: Column(
-    children: <Widget>[
-      Text(
-      "Todo.",
-      style: TextStyle(fontSize: 45.0),
-      ),])),
-      ListView.builder(
+//      return Column (
+//        children : <Widget> [
+//      Padding(
+//      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+//    child: Column(
+//    children: <Widget>[
+//      Text(
+//      "Todo.",
+//      style: TextStyle(fontSize: 45.0),
+//      ),])),   ]
+//      );
+      return ListView.builder(
       shrinkWrap: true,
           itemCount: _todoList.length,
           itemBuilder: (BuildContext context, int index) {
-            String todoId = _todoList[index].key;
-            String subject = _todoList[index].subject;
-            bool completed = _todoList[index].completed;
+              String todoId = _todoList[index].key;
+              String subject = _todoList[index].subject;
+              bool completed = _todoList[index].completed;
 //            String userId = _todoList[index].userId;
-            return Dismissible(
-              key: Key(todoId),
-              background: Container(color: Colors.red),
-              onDismissed: (direction) async {
-                _deleteTodo(todoId, index);
-              },
-              child: ListTile(
-                title: Text(
-                  subject,
-                  style: TextStyle(fontSize: 20.0),
+              return Dismissible(
+                key: Key(todoId),
+                background: Container(color: Colors.red),
+                onDismissed: (direction) async {
+                  _deleteTodo(todoId, index);
+                },
+                child: ListTile(
+                  title: Text(
+                    subject,
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                  trailing: IconButton(
+                      icon: (completed)
+                          ? Icon(
+                        Icons.done_outline,
+                        color: Colors.blue,
+                        size: 20.0,
+                      )
+                          : Icon(Icons.done, color: Colors.grey, size: 20.0),
+                      onPressed: () {
+                        _updateTodo(_todoList[index]);
+                      }),
                 ),
-                trailing: IconButton(
-                    icon: (completed)
-                        ? Icon(
-                      Icons.done_outline,
-                      color: Colors.blue,
-                      size: 20.0,
-                    )
-                        : Icon(Icons.done, color: Colors.grey, size: 20.0),
-                    onPressed: () {
-                      _updateTodo(_todoList[index]);
-                    }),
-              ),
-            );
-          })
-        ]
-      );
+              );
+          });
+
     } else {
-      return Center(child: Text("Welcome. Your list is empty",
+      return Center(child: Text("Start by Adding Todo.",
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 30.0),));
     }
@@ -287,15 +287,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-//        appBar: new AppBar(
-//          title: new Text('Flutter login demo'),
-//          actions: <Widget>[
-//            new FlatButton(
-//                child: new Text('Logout',
-//                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-//                onPressed: _signOut)
-//          ],
-//        ),
+        appBar: new AppBar(
+          title: new Text('Todo.', style: TextStyle(color: Colors.black, fontSize: 40),),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+        ),
         body: _showTodoList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
