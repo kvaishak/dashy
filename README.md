@@ -1,16 +1,19 @@
 # dashy
 
-A new Flutter application.
+Dashy is my first entry into the world of Mobile Application. Being a novice in developing mobile applications, I decided to venture into the same by trying out a hybrid application development framework called Flutter. Dashy is developed using Dart Language in Flutter. Authentication and data storage is handled using Firebase. 
 
-## Getting Started
+I have started developing Dashy as a one-stop destination for your day to day activities. Kind of like a dashboard, hence the application name Dashy. For now, you can log in using the traditional email and password authentication. Google authentication is in development. Once logged in you will be greeted with the main screen which will be your dashboard. For now, it will display the date and a generic wish. This is your dashboard where you can get a glimpse of all your activities like time tracking and genera information like weather. 
 
-This project is a starting point for a Flutter application.
+The second screen is a todo screen, where you can add your todos for the day. Todos can be added. Marked as completed and once done, can be deleted. Todos added here will be synced to the Dashy web application using the same account.
 
-A few resources to get you started if this is your first Flutter project:
+#### Coming up
+* Weather showcase in the main page
+* Native application usage info using python integration
+* Todo editing in the todo screen
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#### Language used
+* Dart
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+#### Technologies / Frameworks Used
+* Flutter
+* Firebase
