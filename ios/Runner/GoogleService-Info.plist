@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>689140744292-jh83e4olb02ulla2t0o7v7gbq7eocank.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.689140744292-jh83e4olb02ulla2t0o7v7gbq7eocank</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>689140744292-es2rnr3nifm8l6esnrjlc3erdts66auj.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC1_1T9YEsYwXb2gdK7FZE6xNA9H0mzQGg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>689140744292</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>wireshark.dashy</string>
+	<key>PROJECT_ID</key>
+	<string>dashy-800d6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dashy-800d6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:689140744292:ios:d4b1904abdec8ea0ca5f71</string>
+	<key>DATABASE_URL</key>
+	<string>https://dashy-800d6.firebaseio.com</string>
+</dict>
+</plist>

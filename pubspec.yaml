@@ -26,6 +26,7 @@ dependencies:
   firebase_auth: ^0.11.1
   auto_size_text:
   firebase_database:
+  google_sign_in:
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +52,7 @@ flutter:
   uses-material-design: true
 
   assets:
-      - dashy-login.png
+      - assets/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

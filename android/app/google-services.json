@@ -38,6 +38,13 @@
             {
               "client_id": "689140744292-a7p66d2mi4r0qfodshv0fsuqfk2a7sha.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "689140744292-jh83e4olb02ulla2t0o7v7gbq7eocank.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "wireshark.dashy"
+              }
             }
           ]
         }

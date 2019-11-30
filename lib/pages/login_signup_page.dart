@@ -57,7 +57,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
         } else {
           userId = await widget.auth.signUp( _email, _password);
           print('Signed up user: $userId');
-          print('Verification email sent');
+//          print('Verification email sent');
 //          widget.auth.sendEmailVerification();
         }
         if (userId.length > 0 && userId != null) {
@@ -116,8 +116,16 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
               _showEmailInput(),
               _showPasswordInput(),
               _showRepeatPasswordInput(),
-              _showPrimaryButton(),
-              _showSecondaryButton(),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _showPrimaryButton(),
+                  _showSecondaryButton(),
+                  _showGoogleButton(),
+                ],
+              ),
+
               _showErrorMessage(),
             ],
           ),
@@ -236,23 +244,47 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
 
   Widget _showPrimaryButton() {
     return new Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
-        child: new MaterialButton(
-          elevation: 5.0,
-          minWidth: 200.0,
-          height: 42.0,
-          color: Colors.blue,
-          child: _formMode == FormMode.LOGIN
-              ? new Text('Login',
-              style: new TextStyle(fontSize: 20.0, color: Colors.white))
-              : new Text('Create account',
-              style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-          onPressed: _validateAndSubmit,
-        ));
+    padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+    child : new MaterialButton(
+      color: Colors.blue,
+      splashColor: Colors.white,
+      elevation: 5.0,
+      minWidth: 200.0,
+      height: 42.0,
+      onPressed: _validateAndSubmit,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      highlightElevation: 10,
+      hoverColor: Colors.blue,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: _formMode == FormMode.LOGIN
+                ? Text('Login',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ))
+                  : Text('Create Account',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                )),
+            )
+          ],
+        ),
+      ),
+    ));
   }
 
   Widget _showSecondaryButton() {
     return new FlatButton(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       child: _formMode == FormMode.LOGIN
           ? new Text('Create an account',
           style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300))
@@ -264,6 +296,50 @@ class _LoginSignUpPageState extends State<LoginSignUpPage>{
           : _changeFormToLogin,
     );
   }
+
+  Widget _showGoogleButton() {
+    return _formMode == FormMode.LOGIN ? OutlineButton(
+      splashColor: Colors.blue,
+      onPressed: _signInUsingGoogle,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+      highlightElevation: 0,
+      borderSide: BorderSide(color: Colors.grey),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                'Sign in with Google',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    ) :
+    Container(
+      height: 0.0,
+    );
+  }
+
+  void _signInUsingGoogle() async{
+    String userId = "";
+    userId = await widget.auth.signInWithGoogle();
+    print("wow google sign in");
+    print(userId);
+    if (userId.length > 0 && userId != null) {
+      widget.onSignedIn();
+    }
+  }
+
 
   void _changeFormToSignUp() {
     _formKey.currentState.reset();
